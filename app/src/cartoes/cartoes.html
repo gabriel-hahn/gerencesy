@@ -1,0 +1,22 @@
+<div>
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Dashboard</li>
+            <li class="breadcrumb-item active">Cartões</li>
+        </ol>
+    </div>
+    <div class="col-md-12 cartoes">
+        <div class="panel-heading row">
+            <ul dnd-list="vm.listaDrag" ng-repeat="cartoes in vm.cartoes.lista track by $index">
+                <li>
+                    {{cartoes.descricao}}
+                </li>
+                <li ng-repeat="item in cartoes.listaAgrup" dnd-draggable="item" dnd-moved="vm.dropCartao(cartoes.listaAgrup, $index)" dnd-effect-allowed="move"
+                    dnd-selected="vm.cartoes.selecionado = item" ng-class="{'selected': vm.cartoes.selecionado === item}">
+                    {{item.nome}}
+                </li>
+                <li>Adicionar +</li>
+            </ul>
+        </div>
+    </div>
+</div>
