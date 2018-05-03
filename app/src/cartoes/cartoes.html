@@ -7,11 +7,11 @@
     </div>
     <div class="col-md-12 cartoes">
         <div class="panel-heading row">
-            <ul dnd-list="vm.listaDrag" ng-repeat="cartoes in vm.cartoes.lista track by $index">
+            <ul dnd-list="cartoes.listaAgrup" ng-repeat="cartoes in vm.cartoes.lista track by $index">
                 <li>
                     {{cartoes.descricao}}
                 </li>
-                <li ng-repeat="item in cartoes.listaAgrup" dnd-draggable="item" dnd-moved="vm.dropCartao(cartoes.listaAgrup, $index)" dnd-effect-allowed="move"
+                <li ng-repeat="item in cartoes.listaAgrup" dnd-draggable="item" dnd-moved="cartoes.listaAgrup.splice($index, 1)" dnd-effect-allowed="move"
                     dnd-selected="vm.cartoes.selecionado = item" ng-class="{'selected': vm.cartoes.selecionado === item}">
                     {{item.nome}}
                 </li>
