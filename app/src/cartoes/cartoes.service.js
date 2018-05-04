@@ -16,18 +16,29 @@
             });
         }
 
-        function put(cartao) {
-            return $http.put(URL_LOCAL, cartao);
+        function post(cartao) {
+            return $http.post(URL_LOCAL, cartao).then(function (response) {
+                return response.data;
+            });
         }
 
-        function options() {
-            return $http.options(URL_LOCAL);
+        function deleteCard(id) {
+            return $http.delete(URL_LOCAL + '?id=' + id).then(function (response) {
+                return response.data;
+            });
+        }
+
+        function put(cartao) {
+            return $http.put(URL_LOCAL, cartao).then(function (response) {
+                return response.data;
+            });
         }
 
         return {
             findAll: findAll,
-            put: put,
-            options: options
+            post: post,
+            deleteCard: deleteCard,
+            put: put
         };
     }
 })();
