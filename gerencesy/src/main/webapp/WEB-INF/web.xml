@@ -15,7 +15,7 @@
         <init-param>
             <description>A comma separated list of HTTP verbs, using which a CORS request can be made.</description>
             <param-name>cors.allowed.methods</param-name>
-            <param-value>GET,POST,HEAD,OPTIONS,PUT</param-value>
+            <param-value>GET,POST,HEAD,OPTIONS,PUT,DELETE</param-value>
         </init-param>
         <init-param>
             <description>A comma separated list of allowed headers when making a non simple CORS request.</description>

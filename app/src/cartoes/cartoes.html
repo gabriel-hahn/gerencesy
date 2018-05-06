@@ -9,14 +9,39 @@
         <div class="panel-heading row">
             <ul dnd-list="cartoes.listaAgrup" ng-repeat="cartoes in vm.cartoes.lista track by $index">
                 <li>
-                    {{cartoes.descricao}}
+                    <strong>{{cartoes.descricao}}</strong>
                 </li>
                 <li ng-repeat="item in cartoes.listaAgrup" dnd-draggable="item" dnd-moved="cartoes.listaAgrup.splice($index, 1)" dnd-effect-allowed="move"
                     dnd-selected="vm.cartoes.selecionado = item" ng-class="{'selected': vm.cartoes.selecionado === item}">
-                    {{item.nome}}
+                    <i>{{item.nome}}</i>
                 </li>
-                <li>Adicionar +</li>
+                <li class="button btn" ng-click="vm.guardarStatusLista(cartoes.status)" data-toggle="modal" data-target="#cartaoModal">
+                    <strong>
+                        <a>Adicionar +</a>
+                    </strong>
+                </li>
             </ul>
+        </div>
+        <a class="esquerdo-inferior" ng-click="vm.excluirCartao()"><img width="70" height="70" src="./src/imagens/lixeira.png"></a>
+    </div>
+    <!-- Add Cartao -->
+    <div class="modal fade" id="cartaoModal" tabindex="-1" role="dialog" aria-labelledby="cartaoModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartaoModal">Adicionar cartão</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <textarea class="col-md-12" ng-model="vm.cartaoAdd"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal" ng-click="vm.adicionarCartao()">Adicionar</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

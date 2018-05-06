@@ -23,7 +23,7 @@
         }
 
         function deleteCard(id) {
-            return $http.delete(URL_LOCAL + '?id=' + id).then(function (response) {
+            return $http.delete(URL_LOCAL + '/' + id).then(function (response) {
                 return response.data;
             });
         }

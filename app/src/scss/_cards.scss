@@ -56,8 +56,7 @@
 .cartoes ul[dnd-list] li {
   background-color: #ddd;
   border: 1px solid #fff;
-  //border-top-right-radius: 4px;
-  //border-top-left-radius: 4px;
+  border-radius: 4px;
   display: block;
   padding: 10px 15px;
   margin-left: 15px;
@@ -71,4 +70,10 @@
 .cartoes ul[dnd-list] li.selected {
   background-color: #8d71a0;
   color: #fff;
+}
+
+.esquerdo-inferior{ 
+  position:absolute;
+  padding-top: 360px;
+  float:left;
 }
