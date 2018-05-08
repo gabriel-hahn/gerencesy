@@ -5,9 +5,9 @@
     angular.module("Gerencesy.gerenciador.cartoes")
         .controller("CartoesCtrl", CartoesCtrl);
 
-    CartoesCtrl.$inject = ['$scope', '$rootScope', 'CartoesService'];
+    CartoesCtrl.$inject = ['$scope', '$rootScope', 'CartoesService', 'Notification'];
 
-    function CartoesCtrl($scope, $rootScope, CartoesService) {
+    function CartoesCtrl($scope, $rootScope, CartoesService, Notification) {
         var vm = this;
         vm.retornaCartaoDiferente = _retornaCartaoDiferente;
         vm.adicionarCartao = _adicionarCartao;
@@ -51,7 +51,9 @@
             var cartao = _retornaCartaoDiferente(newVal, oldVal);
             if (cartao) {
                 cartao.status = "A";
-                cartao.id ? CartoesService.put(cartao) : CartoesService.post(cartao);
+                cartao.id ? CartoesService.put(cartao) : CartoesService.post(cartao).then(function (response) {
+                    cartao.id = response.id;
+                });
             }
         });
 
@@ -60,7 +62,9 @@
             var cartao = _retornaCartaoDiferente(newVal, oldVal);
             if (cartao) {
                 cartao.status = "E";
-                cartao.id ? CartoesService.put(cartao) : CartoesService.post(cartao);
+                cartao.id ? CartoesService.put(cartao) : CartoesService.post(cartao).then(function (response) {
+                    cartao.id = response.id;
+                });
             }
         });
 
@@ -69,7 +73,9 @@
             var cartao = _retornaCartaoDiferente(newVal, oldVal);
             if (cartao) {
                 cartao.status = "P";
-                cartao.id ? CartoesService.put(cartao) : CartoesService.post(cartao);
+                cartao.id ? CartoesService.put(cartao) : CartoesService.post(cartao).then(function (response) {
+                    cartao.id = response.id;
+                });
             }
         });
 
@@ -78,7 +84,9 @@
             var cartao = _retornaCartaoDiferente(newVal, oldVal);
             if (cartao) {
                 cartao.status = "C";
-                cartao.id ? CartoesService.put(cartao) : CartoesService.post(cartao);
+                cartao.id ? CartoesService.put(cartao) : CartoesService.post(cartao).then(function (response) {
+                    cartao.id = response.id;
+                });
             }
         });
 
@@ -125,7 +133,6 @@
         //Retorna o cartao que precisa ter seu status atualizado
         function _retornaCartaoDiferente(newVal, oldVal) {
             if (newVal.length > 0 || oldVal.length > 0) {
-
                 //Verifica a alteração da posição do cartão
                 if (newVal.length > oldVal.length) {
                     var retorno = undefined;
@@ -160,6 +167,7 @@
                             });
                         }
                     });
+                    Notification.success('Cartão excluído com sucesso!');
                 });
             }
         }

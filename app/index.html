@@ -16,24 +16,9 @@
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="src/css/sb-admin.css" rel="stylesheet">
-  <!-- AngularJS-->
-  <script src="vendor/angular/angular.js"></script>
-  <!-- Angular-route-->
-  <script src="vendor/angular-route/angular-route.js"></script>
-  <!-- Angular Drag and Drop-->
-  <script src="vendor/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js"></script>
+  <!-- Angular UI Notification -->
+  <link rel="stylesheet" href="vendor/angular-ui-notification/angular-ui-notification.min.css">
 
-  <script src="app.js"></script>
-  <script src="src/app.module.js"></script>
-
-  <!-- Cartões -->
-  <script src="src/cartoes/cartoes.module.js"></script>
-  <script src="src/cartoes/cartoes.controller.js"></script>
-  <script src="src/cartoes/cartoes.service.js"></script>
-  <!-- Dashboard -->
-  <script src="src/dashboard/dashboard.module.js"></script>
-  <script src="src/dashboard/dashboard.controller.js"></script>
-  <script src="src/dashboard/dashboard.service.js"></script>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -58,6 +43,18 @@
             <span class="nav-link-text">Cartões</span>
           </a>
         </li>
+        <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Atualizar">
+          <a class="nav-link">
+            <i class="fa fa-fw fa-file"></i>
+            <span class="nav-link-text">Atualizar</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Excluir">
+          <a class="nav-link">
+            <i class="fa fa-fw fa-trash"></i>
+            <span class="nav-link-text">Excluir</span>
+          </a>
+        </li> -->
       </ul>
       <ul class="navbar-nav sidenav-toggler">
         <li class="nav-item">
@@ -119,7 +116,27 @@
     <script src="src/js/sb-admin.min.js"></script>
     <!-- Custom scripts for this page-->
     <script src="src/js/sb-admin-datatables.min.js"></script>
-  </div>
+
+    <!-- AngularJS-->
+    <script src="vendor/angular/angular.js"></script>
+    <!-- Angular-route-->
+    <script src="vendor/angular-route/angular-route.js"></script>
+    <!-- Angular Drag and Drop-->
+    <script src="vendor/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js"></script>
+    <!-- Angular UI Notification -->
+    <script src="vendor/angular-ui-notification/angular-ui-notification.min.js"></script>
+
+    <script src="app.js"></script>
+    <script src="src/app.module.js"></script>
+
+    <!-- Cartões -->
+    <script src="src/cartoes/cartoes.module.js"></script>
+    <script src="src/cartoes/cartoes.controller.js"></script>
+    <script src="src/cartoes/cartoes.service.js"></script>
+    <!-- Dashboard -->
+    <script src="src/dashboard/dashboard.module.js"></script>
+    <script src="src/dashboard/dashboard.controller.js"></script>
+    <script src="src/dashboard/dashboard.service.js"></script>
 </body>
 
 </html>

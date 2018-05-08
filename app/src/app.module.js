@@ -3,6 +3,7 @@
 
     angular.module('Gerencesy.gerenciador', [
         'dndLists',
+        'ui-notification',
         'Gerencesy.gerenciador.cartoes',
         'Gerencesy.gerenciador.dashboard'
     ])

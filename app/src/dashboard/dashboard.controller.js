@@ -16,10 +16,12 @@
         //Busca os valores para preenchimento do Dashboard.
         function _init() {
             DashboardService.findDashboard().then(function(response) {
-                vm.registro.fazer = response["A"];
-                vm.registro.andamento = response["E"];
-                vm.registro.pausadas = response["P"];
-                vm.registro.concluidas = response["C"];
+                var totalCartoes = response["A"] + response["E"] + response["P"] + response["C"];
+
+                vm.registro.fazer = response["A"] / totalCartoes * 100;
+                vm.registro.andamento = response["E"] / totalCartoes * 100;
+                vm.registro.pausadas = response["P"] / totalCartoes * 100;
+                vm.registro.concluidas = response["C"] / totalCartoes * 100;
             });
         }
     }

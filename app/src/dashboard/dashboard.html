@@ -12,7 +12,7 @@
                     <div class="card-body-icon">
                         <i class="fa fa-fw fa-list"></i>
                     </div>
-                    <div class="mr-5">{{vm.registro.fazer}} A fazer</div>
+                    <div class="mr-5">{{vm.registro.fazer | number : 0}}% A fazer</div>
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@
                     <div class="card-body-icon">
                         <i class="fa fa-fw fa-list"></i>
                     </div>
-                    <div class="mr-5">{{vm.registro.andamento}} Em andamento</div>
+                    <div class="mr-5">{{vm.registro.andamento | number : 0}}% Em andamento</div>
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
                     <div class="card-body-icon">
                         <i class="fa fa-fw fa-list"></i>
                     </div>
-                    <div class="mr-5">{{vm.registro.pausadas}} Pausadas</div>
+                    <div class="mr-5">{{vm.registro.pausadas | number : 0}}% Pausadas</div>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
                     <div class="card-body-icon">
                         <i class="fa fa-fw fa-list"></i>
                     </div>
-                    <div class="mr-5">{{vm.registro.concluidas}} Concluídas</div>
+                    <div class="mr-5">{{vm.registro.concluidas | number : 0}}% Concluídas</div>
                 </div>
             </div>
         </div>

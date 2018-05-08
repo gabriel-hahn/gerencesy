@@ -45,6 +45,12 @@ gulp.task('vendor', function () {
     './node_modules/angular/*.css'
   ])
     .pipe(gulp.dest('./vendor/angular/'))
+  // Angular UI Notification
+  gulp.src([
+    './node_modules/angular-ui-notification/dist/angular-ui-notification.min.css',
+    './node_modules/angular-ui-notification/dist/angular-ui-notification.min.js'
+  ])
+    .pipe(gulp.dest('./vendor/angular-ui-notification/'))
   // Angular Drag and Drop
   gulp.src([
     './node_modules/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js'
