@@ -35,9 +35,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <textarea class="col-md-12" ng-model="vm.cartaoAdd"></textarea>
+                    <textarea maxlength="255" class="col-md-12" ng-model="vm.cartaoAdd"></textarea>
                 </div>
                 <div class="modal-footer">
+                    <!-- <button class="btn cor-roxa" ng-click="vm.adicionarCartao()" data-dismiss="modal" ng-disabled="!vm.cartaoAdd">Adicionar</button> -->
                     <button class="btn cor-roxa" data-dismiss="modal" ng-click="vm.adicionarCartao()">Adicionar</button>
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                 </div>
