@@ -3,8 +3,6 @@ package com.gabrielhahn.gerencesy.resources;
 import com.gabrielhahn.gerencesy.model.Cartao;
 import com.gabrielhahn.gerencesy.services.CartaoService;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import javax.inject.Inject;

@@ -22,8 +22,8 @@ public class Cartao {
     @Column(name = "nome")
     private String nome;
     
-    @Column(name = "idDia")
-    private Long idDia;
+    @Column(name = "idBoard")
+    private Long idBoard;
     
     @Column(name = "status")
     private String status;
@@ -44,12 +44,12 @@ public class Cartao {
         this.nome = nome;
     }
     
-    public Long getIdDia() {
-        return idDia;
+    public Long getIdBoard() {
+        return idBoard;
     }
 
-    public void setIdDia(Long idDia) {
-        this.idDia = idDia;
+    public void setIdBoard(Long idBoard) {
+        this.idBoard = idBoard;
     }
 
     public String getStatus() {

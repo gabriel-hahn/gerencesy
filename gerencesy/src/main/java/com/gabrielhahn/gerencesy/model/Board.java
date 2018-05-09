@@ -1,6 +1,5 @@
 package com.gabrielhahn.gerencesy.model;
 
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,16 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
  * @author gabrielhahnschaeffer
  */
 @Entity
-@Table(name = "dia")
-public class Dia {
+@Table(name = "board")
+public class Board {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,12 +29,8 @@ public class Dia {
     @Column(name = "status")
     private String status;
     
-    @Column(name = "data_criacao")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dtCriacao;
-    
     @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER)
-    @JoinColumn(name = "idDia")
+    @JoinColumn(name = "idBoard")
     private List<Cartao> cartoes;
 
     public Long getId() {
@@ -62,14 +55,6 @@ public class Dia {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public Date getDtCriacao() {
-        return dtCriacao;
-    }
-
-    public void setDtCriacao(Date dtCriacao) {
-        this.dtCriacao = dtCriacao;
     }
 
     public List<Cartao> getCartoes() {

@@ -15,7 +15,7 @@
         vm.excluirCartao = _excluirCartao;
 
         vm.listaDrag = [];
-        vm.diaAtual = null;
+        vm.boardAtual = null;
 
         //Estrutura inicial dos cartões.
         vm.cartoes = {
@@ -94,8 +94,8 @@
             CartoesService.findAll().then(function (response) {
                 vm.listaCartoes = response;
                 angular.forEach(vm.listaCartoes, function (card) {
-                    //Pega o dia da listagem atual
-                    if (card.idDia) vm.diaAtual = card.idDia;
+                    //Pega o board da listagem atual
+                    if (card.idBoard) vm.boardAtual = card.idBoard;
                     switch (card.status) {
                         case "A":
                             vm.cartoes.lista[0].listaAgrup.push(card);
@@ -118,7 +118,7 @@
             var cartao = {
                 nome: vm.cartaoAdd,
                 status: vm.statusListaAdd,
-                idDia: vm.diaAtual
+                idBoard: vm.boardAtual
             }
 
             vm.cartaoAdd = null;

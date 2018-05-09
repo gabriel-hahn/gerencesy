@@ -5,6 +5,7 @@
         'dndLists',
         'ui-notification',
         'Gerencesy.gerenciador.cartoes',
+        'Gerencesy.gerenciador.calendario',
         'Gerencesy.gerenciador.dashboard'
     ])
 
@@ -18,6 +19,11 @@
                 .when("/cartoes", {
                     templateUrl: './src/cartoes/cartoes.html',
                     controller: 'CartoesCtrl',
+                    controllerAs: 'vm'
+                })
+                .when("/calendario", {
+                    templateUrl: './src/calendario/calendario.html',
+                    controller: 'CalendarioCtrl',
                     controllerAs: 'vm'
                 })
                 .otherwise({ redirectTo: '/' });
