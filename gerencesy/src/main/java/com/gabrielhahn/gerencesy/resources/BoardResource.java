@@ -56,6 +56,12 @@ public class BoardResource {
     public Response update(@PathParam("id")Long id, Board board) {
         return Response.ok(service.update(board)).build();
     }
+
+    @PUT
+    @Path("/changeBoardActive/{id}")
+    public Response changeBoardActive(@PathParam("id") Long id) {
+        return Response.ok(service.changeBoardActive(id)).build();
+    }
     
     @DELETE
     @Path("{id}")

@@ -9,8 +9,10 @@
 
     function BoardsCtrl($scope, $rootScope, BoardService, Notification) {
         var vm = this;
+        vm.idBoardAtivoAtual = null;
 
         vm.adicionarBoard = _adicionarBoard;
+        vm.trocarBoardAtivo = _trocarBoardAtivo;
 
         _init();
 
@@ -18,7 +20,13 @@
             BoardService.findAll().then(function (response) {
                 vm.boards = response;
                 angular.forEach(vm.boards, function (board) {
-                    board.checked = board.status == "S" ? true : false;
+                    if (board.status == "S") {
+                        vm.idBoardAtivoAtual = board.id;
+                        board.checked = true;
+                    }
+                    else {
+                        board.checked = false;
+                    }
                 })
             });
         }
@@ -34,6 +42,15 @@
             });
         }
 
+        //Troca o board ativo atual pelo que foi selecionado.
+        function _trocarBoardAtivo(board) {
+            if (board.id != vm.idBoardAtivoAtual) {
+                BoardService.changeBoardActive(board).then(function (response) {
+                    _init();
+                    //Notification.success("Board ativo atualizado com sucesso!");
+                });
+            }
+        }
     }
 
 })();

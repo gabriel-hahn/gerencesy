@@ -22,6 +22,12 @@
             });
         }
 
+        function changeBoardActive(board) {
+            return $http.put(URL_LOCAL + '/changeBoardActive/' + board.id).then(function (response) {
+                return response.data;
+            });
+        }
+
         function post(board) {
             return $http.post(URL_LOCAL, board).then(function (response) {
                 return response.data;
@@ -45,7 +51,8 @@
             post: post,
             deleteBoard: deleteBoard,
             put: put,
-            getIdBoardCheck: getIdBoardCheck
+            getIdBoardCheck: getIdBoardCheck,
+            changeBoardActive: changeBoardActive
         };
     }
 })();

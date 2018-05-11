@@ -17,8 +17,8 @@
                                 <th>Progresso</th>
                                 <th style="width: 20px;text-align: center;">%</th>
                             </tr>
-                            <tr ng-repeat="board in vm.boards" ng-class="board.checked ? 'cor-roxa-fraco' : ''">
-                                <td><input type="checkbox" ng-model="board.checked"/></td>
+                            <tr ng-repeat="board in vm.boards | orderBy: '-id' " ng-class="board.checked ? 'cor-roxa-fraco' : ''">
+                                <td><input type="checkbox" ng-model="board.checked" ng-click="vm.trocarBoardAtivo(board)"/></td>
                                 <td>{{board.nome}}</td>
                                 <td>
                                     <div class="progress progress-xs">

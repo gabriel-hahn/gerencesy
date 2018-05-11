@@ -61,6 +61,22 @@ public class BoardService {
     public Board update(Board board) {
         return em.merge(board);
     }
+
+    public Board changeBoardActive(Long id) {
+
+        //Atualiza o board ativo atual
+        Query query = em.createQuery("SELECT b FROM Board AS b where b.status = 'S'");
+        List<Board> boards = query.getResultList();
+        boards.get(0).setStatus("N");
+        em.merge(boards.get(0));
+
+        //Seta o novo board ativo
+        Board novoBoardAtivo = findById(id);
+        novoBoardAtivo.setStatus("S");
+        em.merge(novoBoardAtivo);
+
+        return novoBoardAtivo;
+    }
     
     public Board findById(Long id) {
         return em.find(Board.class, id);
