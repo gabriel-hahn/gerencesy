@@ -31,6 +31,12 @@ public class BoardResource {
     public List<Board> findAll() {
         return service.findAll();
     }
+
+    @GET
+    @Path("/getIdBoardCheck")
+    public Long getIdBoardCheck() {
+        return service.getIdBoardCheck();
+    }
     
     @POST
     public Response insert(Board board) {

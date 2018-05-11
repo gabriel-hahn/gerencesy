@@ -17,8 +17,8 @@
                                 <th>Progresso</th>
                                 <th style="width: 20px;text-align: center;">%</th>
                             </tr>
-                            <tr ng-repeat="board in vm.boards">
-                                <td>checked</td>
+                            <tr ng-repeat="board in vm.boards" ng-class="board.checked ? 'cor-roxa-fraco' : ''">
+                                <td><input type="checkbox" ng-model="board.checked"/></td>
                                 <td>{{board.nome}}</td>
                                 <td>
                                     <div class="progress progress-xs">
@@ -30,9 +30,29 @@
                                 </td>
                             </tr>
                         </table>
-                        <button class="btn btn-default cor-roxa" ng-click="vm.adicionarBoard()">Adicionar board</button>
+                        <button class="btn btn-default cor-roxa" data-toggle="modal" data-target="#boardModal">Adicionar board</button>
                     </div>
                 </div>
             </div>
     </section>
+    <!-- Add Board -->
+    <div class="modal fade" id="boardModal" tabindex="-1" role="dialog" aria-labelledby="boardModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartaoModal">Adicionar board</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <textarea maxlength="255" class="col-md-12" ng-model="vm.boardAdd"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn cor-roxa" data-dismiss="modal" ng-click="vm.adicionarBoard()">Adicionar</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

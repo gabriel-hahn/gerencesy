@@ -1,15 +1,7 @@
 package com.gabrielhahn.gerencesy.model;
 
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  *
@@ -28,6 +20,9 @@ public class Board {
     
     @Column(name = "status")
     private String status;
+
+    @Transient
+    private Long progresso;
     
     @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "idBoard")
@@ -55,6 +50,14 @@ public class Board {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Long getProgresso() {
+        return progresso;
+    }
+
+    public void setProgresso(Long progresso) {
+        this.progresso = progresso;
     }
 
     public List<Cartao> getCartoes() {

@@ -5,9 +5,9 @@
     angular.module("Gerencesy.gerenciador.cartoes")
         .controller("CartoesCtrl", CartoesCtrl);
 
-    CartoesCtrl.$inject = ['$scope', '$rootScope', 'CartoesService', 'Notification'];
+    CartoesCtrl.$inject = ['$scope', '$rootScope', 'CartoesService', 'BoardService', 'Notification'];
 
-    function CartoesCtrl($scope, $rootScope, CartoesService, Notification) {
+    function CartoesCtrl($scope, $rootScope, CartoesService, BoardService, Notification) {
         var vm = this;
         vm.retornaCartaoDiferente = _retornaCartaoDiferente;
         vm.adicionarCartao = _adicionarCartao;
@@ -92,25 +92,37 @@
 
         function _init() {
             CartoesService.findAll().then(function (response) {
-                vm.listaCartoes = response;
-                angular.forEach(vm.listaCartoes, function (card) {
-                    //Pega o board da listagem atual
-                    if (card.idBoard) vm.boardAtual = card.idBoard;
-                    switch (card.status) {
-                        case "A":
-                            vm.cartoes.lista[0].listaAgrup.push(card);
-                            break;
-                        case "E":
-                            vm.cartoes.lista[1].listaAgrup.push(card);
-                            break;
-                        case "P":
-                            vm.cartoes.lista[2].listaAgrup.push(card);
-                            break;
-                        case "C":
-                            vm.cartoes.lista[3].listaAgrup.push(card);
-                            break;
-                    }
-                });
+                if (response.length > 0) {
+                    vm.listaCartoes = response;
+                    angular.forEach(vm.listaCartoes, function (card) {
+                        //Pega o board da listagem atual
+                        if (card.idBoard) vm.boardAtual = card.idBoard;
+                        switch (card.status) {
+                            case "A":
+                                vm.cartoes.lista[0].listaAgrup.push(card);
+                                break;
+                            case "E":
+                                vm.cartoes.lista[1].listaAgrup.push(card);
+                                break;
+                            case "P":
+                                vm.cartoes.lista[2].listaAgrup.push(card);
+                                break;
+                            case "C":
+                                vm.cartoes.lista[3].listaAgrup.push(card);
+                                break;
+                        }
+                    });
+                }
+                else {
+                    _getBoardAtual();
+                }
+            });
+        }
+
+        //Retorna o id do board selecionado atualmente.
+        function _getBoardAtual() {
+            BoardService.getIdBoardCheck().then(function (response) {
+                vm.boardAtual = response;
             });
         }
 
