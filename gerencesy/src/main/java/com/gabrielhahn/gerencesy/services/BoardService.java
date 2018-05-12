@@ -54,7 +54,17 @@ public class BoardService {
     }
     
     public Board insert(Board board) {
-        em.persist(board);
+
+        //Antes de inserir, verifica se existe outro board no sistema. Caso não existir, seta este primeiro board para ativo automaticamente.
+        List<Board> boards = findAll();
+        if(boards.size() > 0) {
+            em.persist(board);
+        }
+        else {
+            board.setStatus("S");
+            em.persist(board);
+        }
+
         return board;
     }
     
@@ -67,13 +77,15 @@ public class BoardService {
         //Atualiza o board ativo atual
         Query query = em.createQuery("SELECT b FROM Board AS b where b.status = 'S'");
         List<Board> boards = query.getResultList();
-        boards.get(0).setStatus("N");
-        em.merge(boards.get(0));
-
-        //Seta o novo board ativo
         Board novoBoardAtivo = findById(id);
-        novoBoardAtivo.setStatus("S");
-        em.merge(novoBoardAtivo);
+        if(boards.size() > 0) {
+            boards.get(0).setStatus("N");
+            em.merge(boards.get(0));
+
+            //Seta o novo board ativo
+            novoBoardAtivo.setStatus("S");
+            em.merge(novoBoardAtivo);
+        }
 
         return novoBoardAtivo;
     }
@@ -81,9 +93,16 @@ public class BoardService {
     public Board findById(Long id) {
         return em.find(Board.class, id);
     }
-    
+
+    //Remove o board selecionado e seta um novo para padrão.
     public void remove(Long id) {
         Board board = em.getReference(Board.class, id);
         em.remove(board);
+        Query query = em.createQuery("SELECT b FROM Board AS b");
+        List<Board> boards = query.getResultList();
+        if(boards.size() > 0) {
+            boards.get(0).setStatus("S");
+            em.merge(boards.get(0));
+        }
     }
 }

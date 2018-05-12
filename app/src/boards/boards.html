@@ -3,6 +3,11 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item">Gerencesy</li>
             <li class="breadcrumb-item active">Boards</li>
+            <li class="col-md-10 icones-acao">
+                <a ng-click="vm.excluirBoard()">
+                    <img width="28" height="28" src="./src/imagens/lixeira.png">
+                </a>
+            </li>
         </ol>
     </div>
     <section class="content">
@@ -18,7 +23,9 @@
                                 <th style="width: 20px;text-align: center;">%</th>
                             </tr>
                             <tr ng-repeat="board in vm.boards | orderBy: '-id' " ng-class="board.checked ? 'cor-roxa-fraco' : ''">
-                                <td><input type="checkbox" ng-model="board.checked" ng-click="vm.trocarBoardAtivo(board)"/></td>
+                                <td>
+                                    <input type="checkbox" ng-model="board.checked" ng-click="vm.trocarBoardAtivo(board)" />
+                                </td>
                                 <td>{{board.nome}}</td>
                                 <td>
                                     <div class="progress progress-xs">
@@ -55,4 +62,4 @@
             </div>
         </div>
     </div>
-</div>
+    </div>

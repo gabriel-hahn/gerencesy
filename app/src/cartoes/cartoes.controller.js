@@ -13,7 +13,6 @@
         vm.adicionarCartao = _adicionarCartao;
         vm.guardarStatusLista = _guardarStatusLista;
         vm.excluirCartao = _excluirCartao;
-        vm.editarCartao = _editarCartao;
 
         vm.listaDrag = [];
         vm.boardAtual = null;
@@ -124,6 +123,8 @@
         function _getBoardAtual() {
             BoardService.getIdBoardCheck().then(function (response) {
                 vm.boardAtual = response;
+            }).catch(function(response) {
+                Notification('Você precisa selecionar um board antes de visualizar suas atividades!');
             });
         }
 
@@ -183,10 +184,6 @@
                     Notification.success('Cartão excluído com sucesso!');
                 });
             }
-        }
-
-        function _editarCartao() {
-            
         }
     }
 

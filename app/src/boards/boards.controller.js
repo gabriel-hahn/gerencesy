@@ -13,6 +13,7 @@
 
         vm.adicionarBoard = _adicionarBoard;
         vm.trocarBoardAtivo = _trocarBoardAtivo;
+        vm.excluirBoard = _excluirBoard;
 
         _init();
 
@@ -39,6 +40,7 @@
 
             BoardService.post(board).then(function (response) {
                 vm.boardAdd = null;
+                _init();
             });
         }
 
@@ -47,9 +49,15 @@
             if (board.id != vm.idBoardAtivoAtual) {
                 BoardService.changeBoardActive(board).then(function (response) {
                     _init();
-                    //Notification.success("Board ativo atualizado com sucesso!");
                 });
             }
+        }
+
+        function _excluirBoard() {
+            BoardService.deleteBoard(vm.idBoardAtivoAtual).then(function(response) {
+                _init();
+                Notification.success('Board excluído com sucesso!');
+            });
         }
     }
 
