@@ -37,10 +37,7 @@ public class BoardService {
                     }
                 });
 
-                System.out.println(totalConcluidos[0]);
-                System.out.println(total);
                 x.setProgresso(((double) totalConcluidos[0] / total) * 100);
-                System.out.println(x.getProgresso());
             }
             else {
                 x.setProgresso(0);

@@ -13,6 +13,7 @@
         vm.adicionarCartao = _adicionarCartao;
         vm.guardarStatusLista = _guardarStatusLista;
         vm.excluirCartao = _excluirCartao;
+        vm.editarCartao = _editarCartao;
 
         vm.listaDrag = [];
         vm.boardAtual = null;
@@ -182,6 +183,10 @@
                     Notification.success('Cartão excluído com sucesso!');
                 });
             }
+        }
+
+        function _editarCartao() {
+            
         }
     }
 

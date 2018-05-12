@@ -3,6 +3,15 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item">Gerencesy</li>
             <li class="breadcrumb-item active">Cartões</li>
+            <li class="col-md-10 icones-acao">
+                <a ng-click="vm.excluirCartao()">
+                    <img width="28" height="28" src="./src/imagens/lixeira.png">
+                </a>
+                &nbsp
+                <a data-toggle="modal" data-target="#cartaoModal">
+                    <img width="28" height="28" src="./src/imagens/caneta.png">
+                </a>
+            </li>
         </ol>
     </div>
     <div class="col-md-12 cartoes">
@@ -22,7 +31,6 @@
                 </li>
             </ul>
         </div>
-        <a class="esquerdo-inferior" ng-click="vm.excluirCartao()"><img width="60" height="60" src="./src/imagens/lixeira.png"></a>
     </div>
     <!-- Add Cartao -->
     <div class="modal fade" id="cartaoModal" tabindex="-1" role="dialog" aria-labelledby="cartaoModal" aria-hidden="true">
