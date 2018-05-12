@@ -22,7 +22,7 @@ public class Board {
     private String status;
 
     @Transient
-    private Long progresso;
+    private double progresso;
     
     @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "idBoard")
@@ -52,11 +52,11 @@ public class Board {
         this.status = status;
     }
 
-    public Long getProgresso() {
+    public double getProgresso() {
         return progresso;
     }
 
-    public void setProgresso(Long progresso) {
+    public void setProgresso(double progresso) {
         this.progresso = progresso;
     }
 
@@ -67,6 +67,7 @@ public class Board {
     public void setCartoes(List<Cartao> cartoes) {
         this.cartoes = cartoes;
     }
+
    
 }
 

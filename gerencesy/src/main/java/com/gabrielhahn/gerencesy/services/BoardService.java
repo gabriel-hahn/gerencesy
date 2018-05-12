@@ -26,21 +26,24 @@ public class BoardService {
         //Calcula o progresso de cada board.
         boards.forEach(x -> {
             List<Cartao> cartoes = x.getCartoes();
-            Long total = (long) cartoes.size();
+            Long total = new Long(cartoes.size());
 
-            if(total > 0) {
+            if(cartoes.size() > 0) {
                 final Long[] totalConcluidos = {0L};
 
                 cartoes.forEach(y -> {
                     if(y.getStatus().equals("C")){
-                        totalConcluidos[0]++;
+                        totalConcluidos[0]+= 1;
                     }
                 });
 
-                x.setProgresso(totalConcluidos[0] / total * 100);
+                System.out.println(totalConcluidos[0]);
+                System.out.println(total);
+                x.setProgresso(((double) totalConcluidos[0] / total) * 100);
+                System.out.println(x.getProgresso());
             }
             else {
-                x.setProgresso(0L);
+                x.setProgresso(0);
             }
         });
 

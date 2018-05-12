@@ -18,6 +18,11 @@ public class CartaoService {
     private EntityManager em;
     
     public List<Cartao> findAll() {
+        Query query = em.createQuery("SELECT c FROM Cartao AS c");
+        return query.getResultList();
+    }
+
+    public List<Cartao> findAllBoardActive() {
         Query query = em.createQuery("SELECT c FROM Cartao AS c join Board as b ON (c.idBoard = b.id) where b.status = 'S'");
         return query.getResultList();
     }

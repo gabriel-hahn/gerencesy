@@ -24,7 +24,7 @@ public class CartaoResource {
     
     @GET
     public List<Cartao> findAll() {
-        return service.findAll();
+        return service.findAllBoardActive();
     }
     
     @POST

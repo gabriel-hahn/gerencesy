@@ -73,7 +73,8 @@
 }
 
 .esquerdo-inferior{ 
-  position: relative;
-  padding-top: 390px;
+  position: absolute;
+  z-index: 1;
+  padding-top: 240px;
   float:left;
 }
