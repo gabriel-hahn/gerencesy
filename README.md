@@ -10,6 +10,10 @@ PostgreSQL: create a database.
 In "project-defaults.yml" file, change the line "connection-url" with your database name:
 - connection-url: jdbc:postgresql://localhost:5432/(your database name).
 
+And set your username and password:
+- user-name: (user-name)
+- password: (password)
+
 In gerencesy folder, execute the follow command:
 - mvn install wildfly-swarm:run
 
