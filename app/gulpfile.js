@@ -51,6 +51,16 @@ gulp.task('vendor', function () {
     './node_modules/angular-ui-notification/dist/angular-ui-notification.min.js'
   ])
     .pipe(gulp.dest('./vendor/angular-ui-notification/'))
+  // Angular Auth0
+  gulp.src([
+    './node_modules/auth0-js/build/auth0.js'
+  ])
+    .pipe(gulp.dest('./vendor/auth0-js/'))
+  // Angular Auth0
+  gulp.src([
+    './node_modules/angular-auth0/dist/angular-auth0.js'
+  ])
+    .pipe(gulp.dest('./vendor/angular-auth0/'))
   // Angular Drag and Drop
   gulp.src([
     './node_modules/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js'

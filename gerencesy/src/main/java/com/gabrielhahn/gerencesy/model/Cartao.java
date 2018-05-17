@@ -1,6 +1,7 @@
 package com.gabrielhahn.gerencesy.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -13,13 +14,16 @@ public class Cartao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
+    @NotNull(message = "O nome do cartão é obrigatório")
     @Column(name = "nome")
     private String nome;
 
+    @NotNull(message = "O ID do board é obrigatório")
     @Column(name = "idBoard")
     private Long idBoard;
-    
+
+    @NotNull(message = "O status do cartão é obrigatório")
     @Column(name = "status")
     private String status;
 

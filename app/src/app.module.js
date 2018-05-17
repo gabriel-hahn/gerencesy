@@ -3,15 +3,16 @@
 
     angular.module('Gerencesy.gerenciador', [
         'dndLists',
+        'auth0.auth0',
         'ui-notification',
         'Gerencesy.gerenciador.cartoes',
         'Gerencesy.gerenciador.boards',
         'Gerencesy.gerenciador.dashboard'
     ])
 
-        .config(function ($routeProvider) {
+        .config(function ($routeProvider, angularAuth0Provider, $locationProvider) {
             $routeProvider
-                .when("/", {
+                .when("/dashboard", {
                     templateUrl: './src/dashboard/dashboard.html',
                     controller: 'DashboardCtrl',
                     controllerAs: 'vm'
@@ -26,6 +27,7 @@
                     controller: 'BoardsCtrl',
                     controllerAs: 'vm'
                 })
-                .otherwise({ redirectTo: '/' });
+
+                .otherwise({ redirectTo: '/dashboard' });
         });
 })();

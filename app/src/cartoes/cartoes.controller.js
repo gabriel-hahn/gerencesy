@@ -129,6 +129,7 @@
         }
 
         function _adicionarCartao() {
+
             var cartao = {
                 nome: vm.cartaoAdd,
                 status: vm.statusListaAdd,

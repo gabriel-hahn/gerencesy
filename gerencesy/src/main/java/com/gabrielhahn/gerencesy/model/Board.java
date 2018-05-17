@@ -2,6 +2,7 @@ package com.gabrielhahn.gerencesy.model;
 
 import java.util.List;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -14,10 +15,12 @@ public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
+    @NotNull(message = "O nome do board é obrigatório")
     @Column(name = "nome")
     private String nome;
-    
+
+    @NotNull(message = "O status do board é obrigatório")
     @Column(name = "status")
     private String status;
 

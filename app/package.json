@@ -29,9 +29,11 @@
     },
     "dependencies": {
         "angular": "^1.6.9",
+        "angular-auth0": "^3.0.0",
         "angular-drag-and-drop-lists": "latest",
         "angular-route": "^1.6.10",
         "angular-ui-notification": "^0.3.6",
+        "auth0-js": "^9.5.1",
         "bootstrap": "4.0.0",
         "datatables.net-bs4": "1.10.16",
         "font-awesome": "4.7.0",
