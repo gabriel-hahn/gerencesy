@@ -1,7 +1,7 @@
 # gerencesy
 A application to management activities, like a Trello.
 
-# Turn on
+# Getting started 
 
 # Database
 PostgreSQL: create a database.
