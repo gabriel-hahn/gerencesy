@@ -19,6 +19,7 @@
                 <li ng-repeat="item in cartoes.listaAgrup" dnd-draggable="item" dnd-moved="cartoes.listaAgrup.splice($index, 1)" dnd-effect-allowed="move"
                     dnd-selected="vm.cartoes.selecionado = item" ng-class="{'selected': vm.cartoes.selecionado === item}">
                     <i>{{item.nome}}</i>
+                    <small> - {{item.tempo}} h</small>
                 </li>
                 <li class="button btn" ng-click="vm.guardarStatusLista(cartoes.status)" data-toggle="modal" data-target="#cartaoModal">
                     <strong>
@@ -39,7 +40,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <textarea maxlength="255" class="col-md-12" ng-model="vm.cartaoAdd"></textarea>
+                    <textarea placeholder="Descrição" maxlength="255" class="col-md-12" ng-model="vm.descricao"></textarea>
+                    <input placeholder="Tempo (horas)" class="col-md-12" type="number" ng-model="vm.tempo">
                 </div>
                 <div class="modal-footer">
                     <!-- <button class="btn cor-roxa" ng-click="vm.adicionarCartao()" data-dismiss="modal" ng-disabled="!vm.cartaoAdd">Adicionar</button> -->

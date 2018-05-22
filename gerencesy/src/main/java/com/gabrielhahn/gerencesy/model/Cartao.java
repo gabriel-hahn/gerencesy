@@ -9,10 +9,11 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "cartao")
-public class Cartao {
+@SequenceGenerator(name = "cartao_seq", sequenceName = "cartao_seq", allocationSize = 1)
+public class Cartao implements Entidade {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "cartao_seq", strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @NotNull(message = "O nome do cartão é obrigatório")
@@ -26,6 +27,10 @@ public class Cartao {
     @NotNull(message = "O status do cartão é obrigatório")
     @Column(name = "status")
     private String status;
+
+    @NotNull(message = "O tempo da atividade é obrigatório")
+    @Column(name = "tempo")
+    private Long tempo;
 
     public Long getId() {
         return id;
@@ -57,6 +62,14 @@ public class Cartao {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Long getTempo() {
+        return tempo;
+    }
+
+    public void setTempo(Long tempo) {
+        this.tempo = tempo;
     }
     
 }

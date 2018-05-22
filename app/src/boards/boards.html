@@ -19,7 +19,9 @@
                             <tr>
                                 <th style="width: 10px"></th>
                                 <th>Board</th>
-                                <th>Progresso</th>
+                                <th>Progresso (Cards)</th>
+                                <th style="width: 20px;text-align: center;">%</th>
+                                <th>Progresso (Tempo)</th>
                                 <th style="width: 20px;text-align: center;">%</th>
                             </tr>
                             <tr ng-repeat="board in vm.boards | orderBy: '-id' " ng-class="board.checked ? 'cor-roxa-fraco' : ''">
@@ -34,6 +36,14 @@
                                 </td>
                                 <td>
                                     <span class="badge cor-roxa">{{board.progresso | number : 0}}%</span>
+                                </td>
+                                <td>
+                                    <div class="progress progress-xs">
+                                        <div class="progress-bar cor-roxa" style="width: {{board.progressoTempo}}%"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge cor-roxa">{{board.progressoTempo | number : 0}}%</span>
                                 </td>
                             </tr>
                         </table>

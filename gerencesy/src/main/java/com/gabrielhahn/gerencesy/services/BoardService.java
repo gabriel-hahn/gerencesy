@@ -44,6 +44,28 @@ public class BoardService {
             }
         });
 
+        //Calcula o progresso em tempo de cada board.
+        boards.forEach(x -> {
+            List<Cartao> cartoes = x.getCartoes();
+            Long[] total = {0L};
+
+            if(cartoes.size() > 0) {
+                final Long[] totalConcluidos = {0L};
+
+                cartoes.forEach(y -> {
+                    if(y.getStatus().equals("C")){
+                        totalConcluidos[0]+= y.getTempo();
+                    }
+                    total[0] += y.getTempo();
+                });
+
+                x.setProgressoTempo(((double) totalConcluidos[0] / total[0]) * 100);
+            }
+            else {
+                x.setProgressoTempo(0);
+            }
+        });
+
         return boards;
     }
 

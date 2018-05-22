@@ -1,6 +1,7 @@
 package com.gabrielhahn.gerencesy.services;
 
 import com.gabrielhahn.gerencesy.model.Cartao;
+
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

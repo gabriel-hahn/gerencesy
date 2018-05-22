@@ -10,10 +10,11 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "board")
-public class Board {
+@SequenceGenerator(name = "board_seq", sequenceName = "board_seq", allocationSize = 1)
+public class Board implements Entidade {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "board_seq", strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @NotNull(message = "O nome do board é obrigatório")
@@ -26,6 +27,9 @@ public class Board {
 
     @Transient
     private double progresso;
+
+    @Transient
+    private double progressoTempo;
     
     @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "idBoard")
@@ -61,6 +65,14 @@ public class Board {
 
     public void setProgresso(double progresso) {
         this.progresso = progresso;
+    }
+
+    public double getProgressoTempo() {
+        return progressoTempo;
+    }
+
+    public void setProgressoTempo(double progressoTempo) {
+        this.progressoTempo = progressoTempo;
     }
 
     public List<Cartao> getCartoes() {

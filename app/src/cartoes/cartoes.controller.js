@@ -16,6 +16,7 @@
 
         vm.listaDrag = [];
         vm.boardAtual = null;
+        vm.loading = false;
 
         //Estrutura inicial dos cartões.
         vm.cartoes = {
@@ -131,12 +132,14 @@
         function _adicionarCartao() {
 
             var cartao = {
-                nome: vm.cartaoAdd,
+                nome: vm.descricao,
+                tempo: vm.tempo,
                 status: vm.statusListaAdd,
                 idBoard: vm.boardAtual
             }
 
-            vm.cartaoAdd = null;
+            vm.descricao = null;
+            vm.tempo = null;
 
             angular.forEach(vm.cartoes.lista, function (cartoes) {
                 if (cartoes.status == vm.statusListaAdd) {
