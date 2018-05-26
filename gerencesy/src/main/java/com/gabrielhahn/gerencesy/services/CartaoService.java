@@ -19,7 +19,7 @@ public class CartaoService extends AbstractCrudService<Cartao> {
 
     @Override
     protected GenericDao<Cartao> getDao() {
-        return null;
+        return dao;
     }
 
     public List<Cartao> findAllBoardActive() {

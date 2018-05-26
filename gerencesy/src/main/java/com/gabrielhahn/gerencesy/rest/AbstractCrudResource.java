@@ -80,7 +80,7 @@ public abstract class AbstractCrudResource<T extends Entidade> {
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response update(T entity, @PathParam("id") Long id) {
+    public Response update(@PathParam("id") Long id, T entity) {
         if (!id.equals(entity.getId())) {
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity("ID do objeto difere do ID da URL")

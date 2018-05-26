@@ -29,7 +29,7 @@
         }
 
         function put(cartao) {
-            return $http.put(URL_LOCAL, cartao).then(function (response) {
+            return $http.put(URL_LOCAL + '/' + cartao.id, cartao).then(function (response) {
                 return response.data;
             });
         }

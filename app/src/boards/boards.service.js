@@ -41,7 +41,7 @@
         }
 
         function put(board) {
-            return $http.put(URL_LOCAL, board).then(function (response) {
+            return $http.put(URL_LOCAL + '/' + board.id, board).then(function (response) {
                 return response.data;
             });
         }

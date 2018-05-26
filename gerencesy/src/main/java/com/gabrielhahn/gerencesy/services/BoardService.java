@@ -20,7 +20,7 @@ public class BoardService extends AbstractCrudService<Board> {
 
     @Override
     protected GenericDao<Board> getDao() {
-        return null;
+        return dao;
     }
     
     public List<Board> findAll() {
