@@ -16,6 +16,12 @@
             });
         }
 
+        function getByBoardActive() {
+            return $http.get(URL_LOCAL + '/getByBoardActive').then(function (response) {
+                return response.data;
+            });
+        }
+
         function post(cartao) {
             return $http.post(URL_LOCAL, cartao).then(function (response) {
                 return response.data;
@@ -38,7 +44,8 @@
             findAll: findAll,
             post: post,
             deleteCard: deleteCard,
-            put: put
+            put: put,
+            getByBoardActive: getByBoardActive
         };
     }
 })();

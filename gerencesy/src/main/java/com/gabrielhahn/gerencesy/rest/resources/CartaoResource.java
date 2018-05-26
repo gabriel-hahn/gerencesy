@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
@@ -27,7 +28,15 @@ public class CartaoResource extends AbstractCrudResource<Cartao> {
     }
 
     @GET
+    @Path("/getByBoardActive")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getByBoardActive() {
+        return Response.ok(service.findAllBoardActive()).build();
+    }
+
+    @GET
     @Path("/dashboard")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response dashboard() {
         List<Cartao> cartoes = service.findAll();
         HashMap cartoesAgrupados = new HashMap();

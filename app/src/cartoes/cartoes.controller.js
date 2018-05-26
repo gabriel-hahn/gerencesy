@@ -92,7 +92,7 @@
         });
 
         function _init() {
-            CartoesService.findAll().then(function (response) {
+            CartoesService.getByBoardActive().then(function (response) {
                 if (response.length > 0) {
                     vm.listaCartoes = response;
                     angular.forEach(vm.listaCartoes, function (card) {
