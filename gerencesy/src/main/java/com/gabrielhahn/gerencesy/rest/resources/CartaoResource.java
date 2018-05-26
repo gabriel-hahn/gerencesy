@@ -1,13 +1,14 @@
-package com.gabrielhahn.gerencesy.resources;
+package com.gabrielhahn.gerencesy.rest.resources;
 
 import com.gabrielhahn.gerencesy.model.Cartao;
+import com.gabrielhahn.gerencesy.rest.AbstractCrudResource;
+import com.gabrielhahn.gerencesy.services.AbstractCrudService;
 import com.gabrielhahn.gerencesy.services.CartaoService;
 
 import java.util.HashMap;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
@@ -15,42 +16,14 @@ import javax.ws.rs.core.Response;
  * @author gabrielhahnschaeffer
  */
 @Path("cartao")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
-public class CartaoResource {
+public class CartaoResource extends AbstractCrudResource<Cartao> {
     
     @Inject
     private CartaoService service;
-    
-    @GET
-    public List<Cartao> findAll() {
-        return service.findAllBoardActive();
-    }
-    
-    @POST
-    public Response insert(Cartao cartao) {
-        Cartao novo = service.insert(cartao);
-        return Response.status(Response.Status.CREATED)
-                .entity(novo).build();
-    }
-    
-    @GET
-    @Path("{id}")
-    public Cartao findById(@PathParam("id") Long id) {
-        return service.findById(id);
-    }
-    
-    @PUT
-    public Response update(Cartao cartao) {
-        service.update(cartao);
-        return Response.ok().build();
-    }
-    
-    @DELETE
-    @Path("{id}")
-    public Response delete(@PathParam("id")Long id) {
-        service.remove(id);
-        return Response.noContent().build();
+
+    @Override
+    protected AbstractCrudService<Cartao> getService() {
+        return service;
     }
 
     @GET

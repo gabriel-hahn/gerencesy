@@ -2,26 +2,29 @@ package com.gabrielhahn.gerencesy.services;
 
 import com.gabrielhahn.gerencesy.model.Board;
 import com.gabrielhahn.gerencesy.model.Cartao;
+import com.gabrielhahn.gerencesy.utils.GenericDao;
 
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.inject.Inject;
 
 /**
  *
  * @author gabrielhahnschaeffer
  */
 @Stateless
-public class BoardService {
-    
-    @PersistenceContext
-    private EntityManager em;
+public class BoardService extends AbstractCrudService<Board> {
+
+    @Inject
+    private GenericDao<Board> dao;
+
+    @Override
+    protected GenericDao<Board> getDao() {
+        return null;
+    }
     
     public List<Board> findAll() {
-        Query query = em.createQuery("SELECT b FROM Board AS b");
-        List<Board> boards = query.getResultList();
+        List<Board> boards = dao.findAll();
 
         //Calcula o progresso de cada board.
         boards.forEach(x -> {
@@ -70,8 +73,7 @@ public class BoardService {
     }
 
     public Long getIdBoardCheck() {
-        Query query = em.createQuery("SELECT b FROM Board AS b where b.status = 'S'");
-        List<Board> boards = query.getResultList();
+        List<Board> boards = dao.findByQuery("SELECT b FROM Board AS b where b.status = 'S'");
         return boards.get(0).getId();
     }
     
@@ -79,52 +81,39 @@ public class BoardService {
 
         //Antes de inserir, verifica se existe outro board no sistema. Caso não existir, seta este primeiro board para ativo automaticamente.
         List<Board> boards = findAll();
-        if(boards.size() > 0) {
-            em.persist(board);
-        }
-        else {
+        if(boards.size() == 0) {
             board.setStatus("S");
-            em.persist(board);
         }
 
+        dao.insert(board);
+
         return board;
-    }
-    
-    public Board update(Board board) {
-        return em.merge(board);
     }
 
     public Board changeBoardActive(Long id) {
 
         //Atualiza o board ativo atual
-        Query query = em.createQuery("SELECT b FROM Board AS b where b.status = 'S'");
-        List<Board> boards = query.getResultList();
+        List<Board> boards = dao.findByQuery("SELECT b FROM Board AS b where b.status = 'S'");
         Board novoBoardAtivo = findById(id);
         if(boards.size() > 0) {
             boards.get(0).setStatus("N");
-            em.merge(boards.get(0));
+            dao.update(boards.get(0));
 
             //Seta o novo board ativo
             novoBoardAtivo.setStatus("S");
-            em.merge(novoBoardAtivo);
+            dao.update(novoBoardAtivo);
         }
 
         return novoBoardAtivo;
     }
-    
-    public Board findById(Long id) {
-        return em.find(Board.class, id);
-    }
 
     //Remove o board selecionado e seta um novo para padrão.
     public void remove(Long id) {
-        Board board = em.getReference(Board.class, id);
-        em.remove(board);
-        Query query = em.createQuery("SELECT b FROM Board AS b");
-        List<Board> boards = query.getResultList();
+        dao.delete(id);
+        List<Board> boards = dao.findAll();
         if(boards.size() > 0) {
             boards.get(0).setStatus("S");
-            em.merge(boards.get(0));
+            dao.update(boards.get(0));
         }
     }
 }

@@ -67,11 +67,6 @@
       <version>${version.postgresql}</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-catalina</artifactId>
-      <version>8.0.5</version>
-    </dependency>
-    <dependency>
     <groupId>org.ebaysf.web</groupId>
     <artifactId>cors-filter</artifactId>
     <version>1.0.0</version>

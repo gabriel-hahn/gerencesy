@@ -1,48 +1,28 @@
 package com.gabrielhahn.gerencesy.services;
 
 import com.gabrielhahn.gerencesy.model.Cartao;
+import com.gabrielhahn.gerencesy.utils.GenericDao;
 
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.inject.Inject;
 
 /**
  *
  * @author gabrielhahnschaeffer
  */
 @Stateless
-public class CartaoService {
-    
-    @PersistenceContext
-    private EntityManager em;
-    
-    public List<Cartao> findAll() {
-        Query query = em.createQuery("SELECT c FROM Cartao AS c");
-        return query.getResultList();
+public class CartaoService extends AbstractCrudService<Cartao> {
+
+    @Inject
+    private GenericDao<Cartao> dao;
+
+    @Override
+    protected GenericDao<Cartao> getDao() {
+        return null;
     }
 
     public List<Cartao> findAllBoardActive() {
-        Query query = em.createQuery("SELECT c FROM Cartao AS c join Board as b ON (c.idBoard = b.id) where b.status = 'S'");
-        return query.getResultList();
-    }
-    
-    public Cartao insert(Cartao cartao) {
-        em.persist(cartao);
-        return cartao;
-    }
-    
-    public Cartao update(Cartao cartao) {
-        return em.merge(cartao);
-    }
-    
-    public Cartao findById(Long id) {
-        return em.find(Cartao.class, id);
-    }
-    
-    public void remove(Long id) {
-        Cartao cartao = em.getReference(Cartao.class, id);
-        em.remove(cartao);
+        return dao.findByQuery("SELECT c FROM Cartao AS c join Board as b ON (c.idBoard = b.id) where b.status = 'S'");
     }
 }
