@@ -40,12 +40,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <textarea placeholder="Descrição" maxlength="255" class="col-md-12" ng-model="vm.descricao"></textarea>
-                    <input placeholder="Tempo (horas)" class="col-md-12" type="number" ng-model="vm.tempo">
+                    <textarea required placeholder="Descrição" maxlength="255" class="col-md-12" ng-model="vm.descricao"></textarea>
+                    <input required placeholder="Tempo (horas)" class="col-md-12" type="number" ng-model="vm.tempo">
                 </div>
                 <div class="modal-footer">
-                    <!-- <button class="btn cor-roxa" ng-click="vm.adicionarCartao()" data-dismiss="modal" ng-disabled="!vm.cartaoAdd">Adicionar</button> -->
-                    <button class="btn cor-roxa" data-dismiss="modal" ng-click="vm.adicionarCartao()">Adicionar</button>
+                    <button class="btn cor-roxa" ng-disabled="!vm.tempo || !vm.descricao" data-dismiss="modal" ng-click="vm.adicionarCartao()">Adicionar</button>
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
