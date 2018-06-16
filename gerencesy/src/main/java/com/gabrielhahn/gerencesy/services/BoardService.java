@@ -27,47 +27,10 @@ public class BoardService extends AbstractCrudService<Board> {
         List<Board> boards = dao.findAll();
 
         //Calcula o progresso de cada board.
-        boards.forEach(x -> {
-            List<Cartao> cartoes = x.getCartoes();
-            Long total = new Long(cartoes.size());
-
-            if(cartoes.size() > 0) {
-                final Long[] totalConcluidos = {0L};
-
-                cartoes.forEach(y -> {
-                    if(y.getStatus().equals("C")){
-                        totalConcluidos[0]+= 1;
-                    }
-                });
-
-                x.setProgresso(((double) totalConcluidos[0] / total) * 100);
-            }
-            else {
-                x.setProgresso(0);
-            }
-        });
+        boards = getProcessoBoards(boards);
 
         //Calcula o progresso em tempo de cada board.
-        boards.forEach(x -> {
-            List<Cartao> cartoes = x.getCartoes();
-            Long[] total = {0L};
-
-            if(cartoes.size() > 0) {
-                final Long[] totalConcluidos = {0L};
-
-                cartoes.forEach(y -> {
-                    if(y.getStatus().equals("C")){
-                        totalConcluidos[0]+= y.getTempo();
-                    }
-                    total[0] += y.getTempo();
-                });
-
-                x.setProgressoTempo(((double) totalConcluidos[0] / total[0]) * 100);
-            }
-            else {
-                x.setProgressoTempo(0);
-            }
-        });
+        boards = getTempoBoards(boards);
 
         return boards;
     }
@@ -78,12 +41,8 @@ public class BoardService extends AbstractCrudService<Board> {
     }
     
     public Board insert(Board board) {
-
-        //Antes de inserir, verifica se existe outro board no sistema. Caso não existir, seta este primeiro board para ativo automaticamente.
         List<Board> boards = findAll();
-        if(boards.size() == 0) {
-            board.setStatus("S");
-        }
+        board = verifyStatus(boards, board);
 
         dao.insert(board);
 
@@ -115,5 +74,65 @@ public class BoardService extends AbstractCrudService<Board> {
             boards.get(0).setStatus("S");
             dao.update(boards.get(0));
         }
+    }
+
+    //Retorna o progresso de conclusão de cada board
+    private List<Board> getProcessoBoards(List<Board> boards) {
+        boards.forEach(x -> {
+            List<Cartao> cartoes = x.getCartoes();
+            Long total = new Long(cartoes.size());
+
+            if(cartoes.size() > 0) {
+                final Long[] totalConcluidos = {0L};
+
+                cartoes.forEach(y -> {
+                    if(y.getStatus().equals("C")){
+                        totalConcluidos[0]+= 1;
+                    }
+                });
+
+                x.setProgresso(((double) totalConcluidos[0] / total) * 100);
+            }
+            else {
+                x.setProgresso(0);
+            }
+        });
+
+        return boards;
+    }
+
+    //Retorna o tempo de conclusão de cada board
+    private List<Board> getTempoBoards(List<Board> boards) {
+        boards.forEach(x -> {
+            List<Cartao> cartoes = x.getCartoes();
+            Long[] total = {0L};
+
+            if(cartoes.size() > 0) {
+                final Long[] totalConcluidos = {0L};
+
+                cartoes.forEach(y -> {
+                    if(y.getStatus().equals("C")){
+                        totalConcluidos[0]+= y.getTempo();
+                    }
+                    total[0] += y.getTempo();
+                });
+
+                x.setProgressoTempo(((double) totalConcluidos[0] / total[0]) * 100);
+            }
+            else {
+                x.setProgressoTempo(0);
+            }
+        });
+
+        return boards;
+    }
+
+    //Antes de inserir, verifica se existe outro board no sistema. Caso não existir, seta este primeiro board para ativo automaticamente.
+    private Board verifyStatus(List<Board> boards, Board board) {
+        if(boards.size() == 0) {
+            board.setStatus("S");
+        }
+
+        return board;
     }
 }

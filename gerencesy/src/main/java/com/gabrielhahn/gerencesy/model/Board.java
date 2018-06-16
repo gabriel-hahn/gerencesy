@@ -83,6 +83,13 @@ public class Board implements Entidade {
         this.cartoes = cartoes;
     }
 
-   
+    public Board(String nome, String status) {
+        this.nome = nome;
+        this.status = status;
+    }
+
+    public Board() {
+
+    }
 }
 
