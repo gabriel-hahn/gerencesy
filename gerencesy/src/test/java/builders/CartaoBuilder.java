@@ -14,17 +14,14 @@ public class CartaoBuilder {
         CartaoBuilder cartaoBuilder = new CartaoBuilder();
         cartaoBuilder.cartao = new Cartao();
         cartaoBuilder.cartao.setNome("Cartão teste");
-        cartaoBuilder.cartao.setTempo(2L);
+        cartaoBuilder.cartao.setTempo(1L);
+        cartaoBuilder.cartao.setStatus("A");
+        cartaoBuilder.cartao.setIdBoard(1L);
         return cartaoBuilder;
     }
 
     public CartaoBuilder concluido() {
         cartao.setStatus("C");
-        return this;
-    }
-
-    public CartaoBuilder naoConcluido() {
-        cartao.setStatus("A");
         return this;
     }
 

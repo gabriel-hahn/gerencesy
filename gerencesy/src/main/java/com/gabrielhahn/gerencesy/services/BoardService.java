@@ -77,7 +77,7 @@ public class BoardService extends AbstractCrudService<Board> {
     }
 
     //Retorna o progresso de conclusão de cada board
-    private List<Board> getProcessoBoards(List<Board> boards) {
+    public List<Board> getProcessoBoards(List<Board> boards) {
         boards.forEach(x -> {
             List<Cartao> cartoes = x.getCartoes();
             Long total = new Long(cartoes.size());
@@ -102,7 +102,7 @@ public class BoardService extends AbstractCrudService<Board> {
     }
 
     //Retorna o tempo de conclusão de cada board
-    private List<Board> getTempoBoards(List<Board> boards) {
+    public List<Board> getTempoBoards(List<Board> boards) {
         boards.forEach(x -> {
             List<Cartao> cartoes = x.getCartoes();
             Long[] total = {0L};
@@ -128,7 +128,7 @@ public class BoardService extends AbstractCrudService<Board> {
     }
 
     //Antes de inserir, verifica se existe outro board no sistema. Caso não existir, seta este primeiro board para ativo automaticamente.
-    private Board verifyStatus(List<Board> boards, Board board) {
+    public Board verifyStatus(List<Board> boards, Board board) {
         if(boards.size() == 0) {
             board.setStatus("S");
         }
