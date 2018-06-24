@@ -1,6 +1,8 @@
 # gerencesy
 A application to management activities, like a Trello.
 
+![image](https://i.imgur.com/Oq0bse6l.png)![image](https://i.imgur.com/lXXfcE2l.png)![image](https://i.imgur.com/arsDBCGl.png)
+
 # Getting started 
 
 # Database
