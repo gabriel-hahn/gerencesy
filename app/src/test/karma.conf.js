@@ -15,8 +15,11 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      '../../bower_components/angular/angular.js',
+      '../../vendor/angular/angular.js',
       '../../bower_components/angular-mocks/angular-mocks.js',
+      '../../vendor/jquery/jquery.js',
+      '../../vendor/bootstrap/js/bootstrap.js',
+      '../../bower_components/datatables.net/js/jquery.dataTables.js',
       '../../app.js',
       '../../src/*.js',
       '../../src/**/*.module.js',
