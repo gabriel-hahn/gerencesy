@@ -1,7 +1,7 @@
 # gerencesy
 A application to management activities, like a Trello.
 
-![Example Gerencesy running](img/example.gif)
+![Example Gerencesy running](app/img/example.gif)
 
 # Getting started 
 
